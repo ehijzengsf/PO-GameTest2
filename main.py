@@ -1,21 +1,22 @@
-oimport asyncio
 import pygame
 
-async def main():
-    pygame.init()
-    screen = pygame.display.set_mode((640, 480))
-    clock = pygame.time.Clock()
+# Initialiseer Pygame
+pygame.init()
+screen = pygame.display.set_mode((800, 600))
+clock = pygame.time.Clock() # DIT IS BELANGRIJK
 
-    running = True
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-        
-        # Teken hier je game
-        screen.fill("yellow")
-        
-        pygame.display.flip()
-        await asyncio.sleep(0) # DIT IS VERPLICHT voor de browser
+running = True
+while running:
+    # 1. Events afhandelen
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
 
-asyncio.run(main())
+    # 2. Tekenen
+    screen.fill((255, 255, 0)) # Jouw gele achtergrond
+    
+    # 3. Updaten
+    pygame.display.flip()
+    
+    # 4. De "ademhaling" voor de browser:
+    clock.tick(60)
