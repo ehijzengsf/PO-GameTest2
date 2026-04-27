@@ -1,4 +1,4 @@
-import asyncio
+oimport asyncio
 import pygame
 
 async def main():
@@ -13,7 +13,7 @@ async def main():
                 running = False
         
         # Teken hier je game
-        screen.fill("purple")
+        screen.fill("yellow")
         
         pygame.display.flip()
         await asyncio.sleep(0) # DIT IS VERPLICHT voor de browser
