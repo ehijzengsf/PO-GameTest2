@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mijn Pygame Game</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+  </head>
+  <body>
+    <div id="game-container"></div>
+    <script type="text/javascript">
+      async function main() {
+        let pyodide = await loadPyodide();
+        await pyodide.loadPackage("pygame");
+        
+        // Laad je Python script (zorg dat main.py in dezelfde map staat)
+        const response = await fetch("main.py");
+        const code = await response.text();
+        await pyodide.runPythonAsync(code);
+      }
+      main();
+    </script>
+  </body>
+</html>
