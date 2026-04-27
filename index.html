@@ -9,9 +9,15 @@
     <script type="text/javascript">
       async function main() {
         let pyodide = await loadPyodide();
-        await pyodide.loadPackage("pygame");
         
-        // Laad je Python script (zorg dat main.py in dezelfde map staat)
+        // 1. Micropip laden om pakketten te kunnen installeren
+        await pyodide.loadPackage("micropip");
+        
+        // 2. Pygame (ce) installeren
+        const micropip = pyodide.pyimport("micropip");
+        await micropip.install("pygame-ce");
+        
+        // 3. Jouw main.py inladen en uitvoeren
         const response = await fetch("main.py");
         const code = await response.text();
         await pyodide.runPythonAsync(code);
